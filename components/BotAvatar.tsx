@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarImage } from './ui/Avatar';
 
 const BotAvatar = () => {
   return (
