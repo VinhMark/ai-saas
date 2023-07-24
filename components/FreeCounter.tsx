@@ -8,7 +8,12 @@ import { Button } from './ui/Button';
 import { Zap } from 'lucide-react';
 import { useProModal } from '@/hooks/use-pro-modal';
 
-const FreeCounter = ({ apiLimitCount }: { apiLimitCount: number }) => {
+interface FreeCounterProps {
+  apiLimitCount: number;
+  isPro: boolean;
+}
+
+const FreeCounter = ({ apiLimitCount = 0, isPro = false }: FreeCounterProps) => {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
 
@@ -17,6 +22,10 @@ const FreeCounter = ({ apiLimitCount }: { apiLimitCount: number }) => {
   }, []);
 
   if (!mounted) {
+    return null;
+  }
+
+  if (isPro) {
     return null;
   }
 

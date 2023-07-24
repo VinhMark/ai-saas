@@ -23,6 +23,7 @@ import { cn } from '@/lib/utils';
 import { Button } from './ui/Button';
 import axios from 'axios';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const tools = [
   {
@@ -80,7 +81,7 @@ const ProModal = () => {
 
       window.location.href = (await response).data.url;
     } catch (error: any) {
-      console.log(error, 'STRIPE_CLIENT_ERROR');
+      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -121,7 +122,13 @@ const ProModal = () => {
         </DialogHeader>
         {/* Footer */}
         <DialogFooter>
-          <Button size={'lg'} variant={'premium'} className='w-full mt-5' onClick={onSubscribe}>
+          <Button
+            size={'lg'}
+            variant={'premium'}
+            className='w-full mt-5'
+            onClick={onSubscribe}
+            disabled={isLoading}
+          >
             Upgrade
             <Zap className='w-4 h-4 ml-2 fill-white' />
           </Button>
